@@ -1,0 +1,11 @@
+version: '3'
+services:
+    crontab:
+        build: .
+        privileged: true
+        environment:
+            - CONTAINER=hippocampe-webshop_php_1
+            - ENABLED=true
+        volumes:
+            -  /var/run/docker.sock:/var/run/docker.sock
+            -  ./crontab:/var/spool/cron/crontabs/root
