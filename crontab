@@ -1,10 +1,7 @@
-# Mise à jour toutes les nuits à 1h
-0 1 * * * logger.sh docker exec ${CONTAINER} bin/console list
+# Import de tous les produits toutes les nuits à 1h
+0 1 * * * logger.sh 3600 docker exec -it ${CONTAINER} bin/console hippocampe:populate:all
 
-# Mise à jour toutes les heures
-10,30,50 * * * * logger.sh docker exec ${CONTAINER} bin/console list
-
-# Mise à jour toutes les minutes
-* * * * * logger.sh docker ps
+# Mise à jour des produits toutes les heures
+30 * * * * logger.sh 360 docker exec -it ${CONTAINER} bin/console hippocampe:populate:products:updated
 
 # An empty line is required at the end of this file for a valid cron file.
